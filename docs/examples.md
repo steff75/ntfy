@@ -341,6 +341,151 @@ You can use the HTTP request node to send messages with [Node-RED](https://noder
 
 ![Node red picture flow](static/img/nodered-picture.png)
 
+You can use the [SSE-Client](https://flows.nodered.org/node/node-red-contrib-sse-client) node to subscribe to ntfy topics.
+
+<details>
+<summary>Example: Subscribe to the topic 'nodered' (click to expand)</summary>
+
+``` json
+[
+	{
+		"id": "cd3d1b70550dde89",
+		"type": "sse-client",
+		"z": "39a635ceae70affa",
+		"name": "",
+		"url": "https://ntfy.sh/nodered/sse",
+		"events": [
+			"message"
+		],
+		"headers": {},
+		"proxy": "",
+		"restart": false,
+		"rejectUnauthorized": true,
+		"withCredentials": true,
+		"timeout": 1,
+		"x": 1630,
+		"y": 1840,
+		"wires": [
+			[
+				"ab96e8e52c9f86aa"
+			]
+		]
+	},
+	{
+		"id": "f55b3234d25842a4",
+		"type": "inject",
+		"z": "39a635ceae70affa",
+		"name": "start",
+		"props": [
+			{
+				"p": "start",
+				"v": "true",
+				"vt": "bool"
+			}
+		],
+		"repeat": "",
+		"crontab": "",
+		"once": false,
+		"onceDelay": 0.1,
+		"topic": "",
+		"x": 1410,
+		"y": 1780,
+		"wires": [
+			[
+				"cd3d1b70550dde89"
+			]
+		]
+	},
+	{
+		"id": "3ab2acc97caf46b3",
+		"type": "inject",
+		"z": "39a635ceae70affa",
+		"name": "stop",
+		"props": [
+			{
+				"p": "stop",
+				"v": "true",
+				"vt": "bool"
+			}
+		],
+		"repeat": "",
+		"crontab": "",
+		"once": false,
+		"onceDelay": 0.1,
+		"topic": "",
+		"x": 1410,
+		"y": 1840,
+		"wires": [
+			[
+				"cd3d1b70550dde89"
+			]
+		]
+	},
+	{
+		"id": "44d29e3c8f5bbced",
+		"type": "inject",
+		"z": "39a635ceae70affa",
+		"name": "pause",
+		"props": [
+			{
+				"p": "pause",
+				"v": "true",
+				"vt": "bool"
+			}
+		],
+		"repeat": "",
+		"crontab": "",
+		"once": false,
+		"onceDelay": 0.1,
+		"topic": "",
+		"x": 1410,
+		"y": 1900,
+		"wires": [
+			[
+				"cd3d1b70550dde89"
+			]
+		]
+	},
+	{
+		"id": "b24065ba61986718",
+		"type": "debug",
+		"z": "39a635ceae70affa",
+		"name": "message",
+		"active": true,
+		"tosidebar": true,
+		"console": false,
+		"tostatus": false,
+		"complete": "payload",
+		"targetType": "msg",
+		"statusVal": "",
+		"statusType": "auto",
+		"x": 1940,
+		"y": 1840,
+		"wires": []
+	},
+	{
+		"id": "ab96e8e52c9f86aa",
+		"type": "json",
+		"z": "39a635ceae70affa",
+		"name": "",
+		"property": "payload",
+		"action": "",
+		"pretty": false,
+		"x": 1790,
+		"y": 1840,
+		"wires": [
+			[
+				"b24065ba61986718"
+			]
+		]
+	}
+]
+```
+
+</details>
+![node-red-subscribe-flow](static/img/node-red-subscribe-flow.png)
+
+
 ## Gatus
 
 An example for a custom alert with [Gatus](https://github.com/TwiN/gatus):
